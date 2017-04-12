@@ -1,0 +1,21 @@
+#mapContainer {
+  width: 70%;
+  height: 500px;
+  display: inline-block;
+}
+
+#sidebar {
+  display: inline-block;
+  position: absolute;
+  padding: 15px;
+  background: #cdcdcd;
+  width: 30%;
+  height: 500px;
+}
+.leaflet-popup-content {
+  font-size: 20px;
+} 
+
+ h1 {
+	color:steelblue;
+ }
