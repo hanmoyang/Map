@@ -4,21 +4,13 @@ var map = L.map('mapContainer').setView([40.745653, -73.989614], 12);
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
 }).addTo(map);
 
-var greenIcon = L.icon({
-    iconUrl: 'leaf-green.png',
-    iconSize:     [38, 95], // size of the icon
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
-
-$.getJSON('data/data.geojson', function(jqueryData) {
-
-  L.geoJson(museums, {
+  var museums=L.geoJson(museums, {
     onEachFeature: function (feature, layer) {
       layer.on('click', function() {
 
         var string ='<h2>'
         +feature.properties.NAME
+        +'<h2></div>'
         +feature.properties.URL
         +feature.properties.ADDRESS1
         +feature.properties.CITY
@@ -32,14 +24,15 @@ $.getJSON('data/data.geojson', function(jqueryData) {
   pointTolayer:function(feature,latLng){
     return L.marker(latLng,{icon:greenIcon}).addTo(map);
   }
-  });
+  }).addTo(map);
 
-  L.geoJson(galleries, {
+  var galleries=L.geoJson(galleries, {
       onEachFeature: function (feature, layer) {
         layer.on('click', function() {
 
           var string ='<h2>'
           +feature.properties.NAME
+          +'<h2></div>'
           +feature.properties.URL
           +feature.properties.ADDRESS1
           +feature.properties.CITY
@@ -53,11 +46,8 @@ $.getJSON('data/data.geojson', function(jqueryData) {
       pointTolayer:function(feature,latLng){
       return L.marker(latLng,{icon:greenIcon}).addTo(map);
     }
-    })
-   });
+    }).addTo(map);
 
-  var museums= L.geoJson(museums,{});
-  var galleries=L.geoJson(galleries,{});
 
   var museumsLayerGroup= L.layerGroup([museums]);
   var galleriesLayerGroup = L.layerGroup([galleries]);
